@@ -1,39 +1,53 @@
 'use strict'
 
-// 1 задание
+let str = '   Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod.  ';
+let notStr = 88;
 
-let lang = prompt('Введите язык страницы (ru или en)');
 
-while (lang !== 'ru' && lang !== 'en') { 
-    lang = prompt('Введите ru или en');
+const deleteStartSpace = function (str) {
+    let newStr = '';
+
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === ' ') {
+            continue;
+         } else {
+            newStr = str.slice(i);
+            break;
+         }
+    }
+    return newStr;
 }
 
-if (lang == 'ru') {
-    console.log('Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье');
-} else console.log('Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday');
+const reverseString = function (str) {
+    let reverseStr = '';
 
-switch (lang) {
-    case 'ru':
-        console.log('Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье');
-        break;
-    case 'en':
-        console.log('Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday');
-        break;
+    for (let i = str.length - 1; i >= 0; i--) {
+        reverseStr += str[i];
+    }
+    return reverseStr;
 }
 
-let arr = [
-    ['Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье'],
-    ['Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday']
-]
+const getSubstr = function (str) {
+    let ellipsis = '...';
+    str = str.slice(0, 30) + ellipsis;
+    return str;
+}
 
-let i = (lang == 'ru') ? 0 : 1;
-console.log(arr[i]);
+const mainFunc = function (str) {
+    let resultStr;
 
-// 2 задание
+    if (typeof(str) !== 'string') {
+        return 'Вы ввели не строку';
+    }
+    resultStr = deleteStartSpace(str);
+    resultStr = reverseString(resultStr);
+    resultStr = deleteStartSpace(resultStr);
+    resultStr = reverseString(resultStr);
 
-let namePerson = prompt('Введите имя:');
+    if (resultStr.length > 30) return getSubstr(resultStr);
 
-let status = (namePerson == 'Артем') ? 'Директор' :
-  (namePerson == 'Александр') ? 'Преподаватель' : 'Студент';
+    return resultStr;
+}
 
-console.log(status);
+console.log(mainFunc(str));
+console.log(mainFunc(notStr));
