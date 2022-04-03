@@ -1,21 +1,29 @@
 'use strict'
 
-let str = '   Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod.  ';
-let notStr = 88;
+let arr = [123, 228, 456, 234, 867, 434, 34];
+let str = '';
 
-
-const mainFunc = function (str) {
-    if (typeof(str) !== 'string') {
-        return 'Вы ввели не строку';
+for (let i = 0; i < arr.length; i++) {
+    str = String(arr[i]);
+    if (+str[0] === 2 || +str[0] === 4) {
+        console.log(arr[i]);
     }
+}
 
-    let text = str.trim();
-    if (text.length > 30) {
-        return text.slice(0, 30) + '...';
-    } else {
-        return text;
+
+
+const getIntegers = function (n) {
+    console.log('Число: 1 делители этого числа 1 и 1');
+
+    nextStep:
+    for (let i = 2; i <= n; i++) {
+
+        for (let j = 2; j < i; j++) {
+            if (i % j == 0) continue nextStep;   
+        }
+
+        console.log('Число: ' + i + ' делители этого чилса 1 и ' + i);
     }
-};
+}
 
-console.log(mainFunc(str));
-console.log(mainFunc(notStr));
+getIntegers(10);
